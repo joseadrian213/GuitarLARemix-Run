@@ -61,10 +61,15 @@ export function links() {
 }
 export default function App() {
   //En caso de que no haya nada se le pasara el arreglo vacio
-  const carritoLS =
-    typeof window !== "undefined"
-      ? JSON.parse(localStorage.getItem("carrito") ?? [])
-      : null;
+  // const carritoLS =
+  //   typeof window !== "undefined"
+  //     ? JSON.parse(localStorage.getItem("carrito") ?? [])
+  //     : null;
+  let carritoLS = null;
+if (typeof window !== "undefined") {
+  const item = localStorage.getItem("carrito");
+  carritoLS = item ? JSON.parse(item) : [];
+}
   const [carrito, setCarrito] = useState(carritoLS);
   useEffect(() => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
